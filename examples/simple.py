@@ -9,6 +9,8 @@ if __name__ == '__main__':
     train, test = util.get_dataset(args.dataset)
 
     # initialize model
+    print '(simple.py)-initialize model'
+    # what's the means of n_filters ?
     model = net.ConvNet(n_filters=16, n_out=10)
 
     # train model

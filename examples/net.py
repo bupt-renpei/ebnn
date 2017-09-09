@@ -16,7 +16,9 @@ class ConvNet(BL.CChainMixin, chainer.Chain):
         self.n_filters = n_filters
         self.n_out = n_out
         with self.init_scope():
+            # if the number of intermediate output(3) increase, the accuracy will increase as well
             self.l1 = BL.ConvBNBST(n_filters, 3)
+            # Softmax is more computational expensive
             self.l2 = BL.BinaryLinearBNSoftmax(n_out)
 
     def link_order(self):
