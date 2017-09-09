@@ -1,0 +1,41 @@
+Emscripten Install note
+
+1.download Emscripten SDK for Linux and OS X
+
+https://s3.amazonaws.com/mozilla-games/emscripten/releases/emsdk-portable.tar.gz
+
+2.update and install
+
+#Update the package lists
+sudo apt-get update
+
+# Install *gcc* (and related dependencies)
+sudo apt-get install build-essential
+
+# Install cmake
+sudo apt-get install cmake
+
+# Install Python
+sudo apt-get install python2.7
+
+# Install node.js
+sudo apt-get install nodejs
+
+# Install Java (optional, only needed for Closure Compiler minification)
+sudo apt-get install default-jre
+
+3.extract emsdk-portable.tar.gz
+
+4.install
+
+# Fetch the latest registry of available tools.
+./emsdk update
+
+# Download and install the latest SDK tools.
+./emsdk install latest
+
+# Set up the compiler configuration to point to the "latest" SDK.
+./emsdk activate latest
+
+# Activate PATH and other environment variables in the current terminal
+source ./emsdk_env.sh
