@@ -16,7 +16,10 @@ def accuracy(model, dataset_tuple, ret_param='acc', batchsize=1024, gpu=0):
     x, y = dataset_tuple._datasets[0], dataset_tuple._datasets[1]
     accs = 0
     model.train = False
+    print '(util.py)-accuracy'
+    print 'Total data length ', len(x), '; batchsize ', batchsize
     for i in range(0, len(x), batchsize):
+        print '|-  ', i, 'epoch :'
         x_batch = xp.array(x[i:i + batchsize])
         y_batch = xp.array(y[i:i + batchsize])
         acc_data = model(x_batch, y_batch, ret_param=ret_param)

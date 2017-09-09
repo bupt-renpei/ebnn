@@ -24,4 +24,5 @@ if __name__ == '__main__':
     print 'Model accuracy: ', acc
 
     # generate and save C model as a header file
+    print 'generate and save C model as a header file'
     model.generate_c('simple.h', train._datasets[0].shape[1:])
