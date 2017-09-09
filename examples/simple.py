@@ -14,9 +14,12 @@ if __name__ == '__main__':
     model = net.ConvNet(n_filters=16, n_out=10)
 
     # train model
+    print '(simple.py)-train model'
+    print '|-   arg is ', args
     util.train_model(model, train, test, args)
 
     # get test accuracy
+    print '(simple.py)-get test accuracy'
     acc = util.accuracy(model, test, gpu=args.gpu)
     print 'Model accuracy: ', acc
 

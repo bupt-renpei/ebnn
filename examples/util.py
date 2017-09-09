@@ -21,12 +21,17 @@ def accuracy(model, dataset_tuple, ret_param='acc', batchsize=1024, gpu=0):
         y_batch = xp.array(y[i:i + batchsize])
         acc_data = model(x_batch, y_batch, ret_param=ret_param)
         acc_data.to_cpu()
+        print '|-   acc_data = ', acc_data
         acc = acc_data.data
+        print '|-   acc_data.data = ', acc_data.data
         accs += acc * len(x_batch)
     return (accs / len(x)) * 100.
 
 
 def train_model(model, train, test, args, lr=0.003):
+    print '(util.py)-train_model'
+    # lr means learning rate
+    print '|-   lr = ', lr
     chainer.config.train = True
     if args.gpu >= 0:
         cuda.get_device(args.gpu).use()
@@ -35,8 +40,9 @@ def train_model(model, train, test, args, lr=0.003):
     opt = optimizers.Adam(lr)
     opt.setup(model)
     train_iter = chainer.iterators.SerialIterator(train, args.batchsize)
+    # original shuffle is False
     test_iter = chainer.iterators.SerialIterator(test, args.batchsize,
-                                                 repeat=False, shuffle=False)
+                                                 repeat=False, shuffle=True)
     updater = training.StandardUpdater(train_iter, opt, device=args.gpu)
     trainer = training.Trainer(updater, (args.epoch, 'epoch'), out=args.out)
     trainer.extend(extensions.Evaluator(test_iter, model, device=args.gpu))
@@ -51,6 +57,7 @@ def train_model(model, train, test, args, lr=0.003):
 
     name = model.param_names()
     save_model(model, os.path.join(args.model_path, name))
+    print '|-   model name = ', name
     with open(os.path.join(args.out, 'log'), 'r') as fp:
         return eval(fp.read().replace('\n', ''))
     chainer.config.train = False

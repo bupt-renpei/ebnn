@@ -16,17 +16,27 @@ class ConvNet(BL.CChainMixin, chainer.Chain):
         self.n_filters = n_filters
         self.n_out = n_out
         with self.init_scope():
+            print '(net.py)-init ConvNet'
             # if the number of intermediate output(3) increase, the accuracy will increase as well
             self.l1 = BL.ConvBNBST(n_filters, 3)
+            print ' self.l1 is ', self.l1
+            # we can also try
+            # self.l1 = BL.BinaryConvBNBST(n_filters, 3)
+
             # Softmax is more computational expensive
             self.l2 = BL.BinaryLinearBNSoftmax(n_out)
+            print ' self.l2 is ', self.l2
 
     def link_order(self):
+        print '(net.py)-link_order'
         return [self.l1,  self.l2]
 
     def __call__(self, x, t, ret_param='loss'):
+        # print '(net.py)-__call__'
+        # this function will be invoked by many times
         h = self.l1(x)
         h = self.l2(h)
+        # print '(net.py)-__call__ : h ', h
 
         # reports loss and accuracy (used during training)
         report = {
