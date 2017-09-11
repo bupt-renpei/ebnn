@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Compile C to WebAssembly</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="apple-touch-fullscreen" content="yes" />
+  <meta name="format-detection" content="telephone=no, email=no" />
+  <script src="../loader.js"></script>
+</head>
+
+<body>
+  <h1>Compile C to WebAssembly</h1>
+  <p>The test result can be found in console.</p>
+  <p id="result"></p>
+
+  <script>
+    loadWebAssembly('simple_interface.wasm')
+      .then(instance => {
+
+        const ebnn_compute = instance.exports._ebnn_compute
+        var image = new Array();
+        var i;
+        for(i = 0; i < 28*28; ++i)
+        {
+            image[i] = i;
+        }
+        console.log('Number =', ebnn_compute(image))
+      })
+  </script>
+</body>
+</html>
