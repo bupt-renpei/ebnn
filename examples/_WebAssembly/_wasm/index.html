@@ -40,10 +40,11 @@
         imports: {
           imported_computeFake: function() {
             //console.log();
-            console.log('Number =', computeFake());
+            //console.log('Number =', computeFake());
           }
         }
       };
+    console.log('Number =', computeFake());
       fetchAndInstantiate('simple_interface_Pro.wasm', importObject).then(function(instance) {
         instance.exports.exported_computeFake();
       });
