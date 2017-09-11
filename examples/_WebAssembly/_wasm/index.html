@@ -20,13 +20,13 @@
       .then(instance => {
 
         const ebnn_compute = instance.exports._ebnn_compute
-        var image = new Array();
+        var image = new ArrayBuffer(784);
         var i;
         for(i = 0; i < 28*28; ++i)
         {
-            image[i] = i;
+            image.push(i);
         }
-        console.log('Number =', ebnn_compute([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]))
+        console.log('Number =', ebnn_compute(image)
       })
   </script>
 </body>
