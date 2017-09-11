@@ -1,1 +1,2 @@
 access website:
+http://htmlpreview.github.io/?https://raw.githubusercontent.com/bupt-renpei/wasm-examples/master/cpp/index.html
