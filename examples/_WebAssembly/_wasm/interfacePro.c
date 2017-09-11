@@ -547,12 +547,12 @@ float l_b_linear_bn_softmax1_bn_std[10] = {198.5654,179.37846,179.4702,155.90184
 
 /*
 void l_b_linear_bn_softmax1(uint8_t* input, uint8_t* output){
-  blinear_layer(input, l_b_linear_bn_softmax1_bl_W, output, l_b_linear_bn_softmax1_bl_b, l_b_linear_bn_softmax1_bn_gamma, l_b_linear_bn_softmax1_bn_beta, l_b_linear_bn_softmax1_bn_mean, l_b_linear_bn_softmax1_bn_std, 1, 10816, 10); 
+  blinear_layer(input, l_b_linear_bn_softmax1_bl_W, output, l_b_linear_bn_softmax1_bl_b, l_b_linear_bn_softmax1_bn_gamma, l_b_linear_bn_softmax1_bn_beta, l_b_linear_bn_softmax1_bn_mean, l_b_linear_bn_softmax1_bn_std, 1, 10816, 10);
 }
 */
 
 int l_b_linear_bn_softmax1(uint8_t* input){
-  blinear_layer(input, l_b_linear_bn_softmax1_bl_W, l_b_linear_bn_softmax1_bl_b, l_b_linear_bn_softmax1_bn_gamma, l_b_linear_bn_softmax1_bn_beta, l_b_linear_bn_softmax1_bn_mean, l_b_linear_bn_softmax1_bn_std, 1, 10816, 10); 
+  blinear_layer(input, l_b_linear_bn_softmax1_bl_W, l_b_linear_bn_softmax1_bl_b, l_b_linear_bn_softmax1_bn_gamma, l_b_linear_bn_softmax1_bn_beta, l_b_linear_bn_softmax1_bn_mean, l_b_linear_bn_softmax1_bn_std, 1, 10816, 10);
 }
 
 
@@ -568,4 +568,15 @@ void ebnn_compute(float *input, uint8_t *output){
 int ebnn_compute(float *input){
   l_conv_bn_bst0(input, temp1);
   return l_b_linear_bn_softmax1(temp1);
+}
+
+int computeFake(){
+  float input[784];
+
+  //simulate a 28 by 28 greyscale image
+  for(int i = 0; i < 28*28; ++i) {
+    input[i] = i;
+  }
+
+  return ebnn_compute(input);
 }

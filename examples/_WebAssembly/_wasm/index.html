@@ -16,17 +16,21 @@
   <p id="result"></p>
 
   <script>
-    loadWebAssembly('simple_interface.wasm')
+    loadWebAssembly('simple_interface_Pro.wasm')
       .then(instance => {
 
-        const ebnn_compute = instance.exports._ebnn_compute
+        const computeFake = instance.exports._computeFake
+
+        /*
         var image = new ArrayBuffer(784);
         var i;
         for(i = 0; i < 28*28; ++i)
         {
             image.push(i);
         }
-        console.log('Number =', ebnn_compute(image)
+        */
+
+        console.log('Number =', computeFake()
       })
   </script>
 </body>
