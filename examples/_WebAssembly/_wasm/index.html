@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <meta name="apple-touch-fullscreen" content="yes" />
   <meta name="format-detection" content="telephone=no, email=no" />
-  <script src="../wasm-utils.js"></script>
+  <script src="wasm-utils.js"></script>
 </head>
 
 <body>
@@ -18,36 +18,36 @@
   <script>
     
     /*
+
     loadWebAssembly('simple_interface_Pro.wasm')
       .then(instance => {
 
         const computeFake = instance.exports._computeFake
 
-        
         var image = new ArrayBuffer(784);
         var i;
         for(i = 0; i < 28*28; ++i)
         {
             image.push(i);
         }
-        
 
         console.log('Number =', computeFake())
-      })
-      */
-    
-       var importObject = {
-        imports: {
-          imported_computeFake: function() {
-            //console.log();
-            console.log('Number =');
-          }
-        }
-      };
-    //console.log('Number =', computeFake());
-      fetchAndInstantiate('simple_interface_Pro.wasm', importObject).then(function(instance) {
-        instance.exports.exported_computeFake();
-      });
+      }
+    )
+
+    */
+
+    makeFactorial({
+      'global': {},
+      'env': {
+        'memory': new WebAssembly.Memory({initial: 100, limit: 1000}),
+        'table': new WebAssembly.Table({initial: 0, element: 'anyfunc'})
+      }
+    }).then(instance => {
+      const computeFake = instance.exports._computeFake;
+      console.log(computeFake());
+    })
+
   </script>
 </body>
 </html>
