@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <meta name="apple-touch-fullscreen" content="yes" />
   <meta name="format-detection" content="telephone=no, email=no" />
-  <script src="wasm-utils.js"></script>
+  <script src="loader.js"></script>
 </head>
 
 <body>
@@ -17,8 +17,6 @@
 
   <script>
     
-
-
     loadWebAssembly('simple_interface_Pro.wasm')
       .then(instance => {
 
@@ -34,7 +32,6 @@
         console.log('Number =', computeFake())
       }
     )
-
 
     /*
     makeFactorial({
