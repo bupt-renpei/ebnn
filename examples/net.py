@@ -18,7 +18,7 @@ class ConvNet(BL.CChainMixin, chainer.Chain):
         with self.init_scope():
             print '(net.py)-init ConvNet'
             # if the number of intermediate output(3) increase, the accuracy will increase as well
-            self.l1 = BL.ConvBNBST(n_filters, 3)
+            self.l1 = BL.ConvPoolBNBST(n_filters, 3)
             print ' self.l1 is ', self.l1
             # we can also try
             # self.l1 = BL.BinaryConvBNBST(n_filters, 3)
