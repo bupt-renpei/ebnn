@@ -103,7 +103,7 @@ def default_parser(description=''):
                         help='learning minibatch size')
     parser.add_argument('--epoch', '-e', default=20, type=int,
                         help='number of epochs to learn')
-    parser.add_argument('--dataset', '-d', default='mnist',
+    parser.add_argument('--dataset', '-d', default='cifar10',
                         choices=['mnist', 'cifar10'], help='dataset name')
     parser.add_argument('--gpu', '-g', default=0, type=int,
                         help='GPU ID (negative value indicates CPU)')
