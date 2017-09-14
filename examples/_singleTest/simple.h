@@ -1,4 +1,6 @@
 #include "ebnn.h"
+#include <iostream>
+
 float l_conv_bn_bst0_bconv_b[16] = {-0.013764977,0.25299621,0.067271724,0.29791236,-0.2842963,-0.2689876,-0.41257888,0.076907985,-0.53845125,0.041543938,-0.29735845,-0.13429391,0.21167998,0.39652687,-0.099920548,-0.2567614};
 uint8_t l_conv_bn_bst0_bconv_W[32] = {5,255,159,255,27,255,36,255,127,127,224,127,192,255,4,255,98,127,235,255,200,127,108,255,3,127,63,127,144,127,148,127};
 float l_conv_bn_bst0_bn_beta[16] = {-1.4061538,2.5077543,0.54677153,-0.90048879,0.9562732,-0.70364398,-0.76120538,-1.4800552,-0.6636911,1.2918344,-1.3802367,-1.6804892,-0.94079989,0.90927047,-1.3809282,-0.30660373};
@@ -23,6 +25,12 @@ void l_b_linear_bn_softmax1(uint8_t* input, uint8_t* output){
 uint8_t temp1[1352] = {0};
 uint8_t temp2[1352] = {0};
 void ebnn_compute(float *input, uint8_t *output){
+
+  std::cout << "input size is : " << (sizeof(input)/sizeof(input[0])) << std::endl;
   l_conv_bn_bst0(input, temp1);
+
+  std::cout << "temp1 size is : " << (sizeof(temp1)/sizeof(temp1[0])) << std::endl;
   l_b_linear_bn_softmax1(temp1, output);
+
+  std::cout << "output size is : " << (sizeof(output)/sizeof(output[0])) << std::endl;
 }
