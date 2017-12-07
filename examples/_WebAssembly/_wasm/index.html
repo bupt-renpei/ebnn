@@ -21,13 +21,14 @@
       .then(instance => {
 
         const computeFake = instance.exports._computeFake
-
+/*
         var image = new ArrayBuffer(784);
         var i;
         for(i = 0; i < 28*28; ++i)
         {
             image.push(i);
         }
+        */
 
         console.log('Number =', computeFake())
       }
